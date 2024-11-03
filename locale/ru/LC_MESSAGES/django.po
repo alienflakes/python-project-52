@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-03 20:49+0300\n"
+"POT-Creation-Date: 2024-11-04 01:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,36 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: task_manager/templates/base.html:18
+
+#: templates/base.html:20
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:23 users/templates/users.html:7
+#: templates/base.html:25 templates/users.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:28
+#: templates/base.html:31 templates/registration/login.html:9
+#: templates/registration/login.html:14
 msgid "Log In"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:31
+#: templates/base.html:34
 msgid "Sign Up"
 msgstr "Регистрация"
 
-#: users/templates/users.html:12
+#: templates/base.html:39
+msgid "Log Out"
+msgstr "Выход"
+
+#: templates/users.html:12
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: users/templates/users.html:13
+#: templates/users.html:13
 msgid "Full Name"
 msgstr "Полное имя"
 
-#: users/templates/users.html:14
+#: templates/users.html:14
 msgid "Joined at"
 msgstr "Дата создания"
