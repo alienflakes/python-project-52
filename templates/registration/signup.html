@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+
+<form action="{% url 'signup' %}" method="post">
+    <div class="col-sm-4">
+        <h1 class="h3 my-4">{% trans 'Sign Up' %}</h1>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button _('Sign Up') button_type="submit" %}
+    </div>
+</form>
+
+{% endblock content %}
