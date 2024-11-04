@@ -6,10 +6,10 @@
 
 <form action="{% url 'signup' %}" method="post">
     <div class="col-sm-4">
-        <h1 class="h3 my-4">{% trans 'Sign Up' %}</h1>
+        <h1 class="my-4">{% trans 'Sign Up' %}</h1>
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% bootstrap_button _('Sign Up') button_type="submit" %}
+        <input class="btn btn-primary" type="submit" value="{% trans 'Sign Up' context 'verb' %}">
     </div>
 </form>
 

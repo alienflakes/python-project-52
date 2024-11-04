@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-04 19:02+0300\n"
+"POT-Creation-Date: 2024-11-05 00:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,13 +34,22 @@ msgid "Log In"
 msgstr "Вход"
 
 #: templates/base.html:34 templates/registration/signup.html:9
-#: templates/registration/signup.html:12
 msgid "Sign Up"
 msgstr "Регистрация"
 
 #: templates/base.html:39
 msgid "Log Out"
 msgstr "Выход"
+
+#: templates/registration/login.html:12
+msgctxt "verb"
+msgid "Log In"
+msgstr "Войти"
+
+#: templates/registration/signup.html:12
+msgctxt "verb"
+msgid "Sign Up"
+msgstr "Зарегистрировать"
 
 #: templates/users.html:12
 msgid "Username"
@@ -53,6 +62,12 @@ msgstr "Полное имя"
 #: templates/users.html:14
 msgid "Joined at"
 msgstr "Дата создания"
+
+#, fuzzy
+#~| msgid "Sign Up"
+#~ msgctxt "noun"
+#~ msgid "Sign Up"
+#~ msgstr "Регистрация"
 
 #, fuzzy
 #~| msgid "Sign Up"
