@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView
-from django.contrib.auth import models, forms
+from django.contrib.auth import models
 from django.urls import reverse_lazy
+from . import forms
 
 
 class UsersView(ListView):
