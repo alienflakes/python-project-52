@@ -5,7 +5,7 @@
 
 <div class="container-lg mt-3">
     <h1>{% trans 'Users' %}</h1>
-    <table class="table table-hover table-dark">
+    <table class="table table-striped table-hover table-dark">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -15,14 +15,14 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody class="table-striped table-light">
+        <tbody class="table-light">
             {% for user in user_list %}
             <tr>
                 <th scope="row">{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.get_full_name }}</td>
                 <td>{{ user.date_joined }}</td>
-                <td>butttons</td>
+                <td><a href="/users/{{ user.id }}/update">Update</a></td>
             </tr>
             {% endfor %}
         </tbody>
