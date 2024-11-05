@@ -10,8 +10,6 @@
     {% bootstrap_javascript %}
 </head>
 
-{% bootstrap_messages %}
-
 <body class="d-flex flex-column min-vh-100">
 
     {% block nav %}
@@ -22,7 +20,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'users_view' %}">{% trans 'Users' %}</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'users' %}">{% trans 'Users' %}</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -44,6 +42,8 @@
         </div>
     </nav>
     {% endblock nav %}
+
+    {% bootstrap_messages %}
 
     <div class="container wrapper flex-grow-1">
         {% block content %}
