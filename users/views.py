@@ -1,13 +1,17 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.contrib.auth import models, mixins
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.views.generic import (ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView)
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin
 from . import forms
 
 
 class UsersView(ListView):
-    queryset = models.User.objects.all()
+    queryset = User.objects.all()
     template_name = 'users.html'
 
 
@@ -17,23 +21,25 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
 
 
-class UserPermissionMixin(mixins.UserPassesTestMixin):
+class UserPermissionMixin(UserPassesTestMixin):
 
     def test_func(self):
         return self.request.user.id == self.kwargs['id']
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
-            messages.error(self.request, "You can only mess with your own data!!!")
+            messages.error(self.request,
+                           "You can only mess with your own data!!!")
             return redirect(reverse_lazy('index'))
         else:
-            messages.warning(self.request, "Log in to mess with profile data!!!")
+            messages.warning(self.request,
+                             "Log in to mess with profile data!!!")
             return redirect(reverse_lazy('login'))
 
 
 class CustomUpdateView(UserPermissionMixin, UpdateView):
 
-    model = models.User
+    model = User
     pk_url_kwarg = 'id'
     form_class = forms.CustomUserChangeForm
     success_url = reverse_lazy('users')
@@ -53,7 +59,7 @@ class CustomUpdateView(UserPermissionMixin, UpdateView):
 
 class DeleteView(UserPermissionMixin, DeleteView):
 
-    model = models.User
+    model = User
     pk_url_kwarg = 'id'
     template_name = 'registration/delete.html'
     success_url = reverse_lazy('users')
@@ -61,23 +67,3 @@ class DeleteView(UserPermissionMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         request.user.delete()
         return redirect(self.success_url)
-
-
-class Custom0000UpdateView(UpdateView):
-
-    success_url = reverse_lazy('users')
-    template_name = 'registration/update.html'
-
-    def get(self, request, *args, **kwargs):
-        current_user = request.user
-        user_to_change = models.User.objects.get(id=kwargs['id'])
-        if current_user.is_authenticated and current_user.id == user_to_change.id:
-            return render(request, 'registration/update.html', context={
-                'user': user_to_change,
-                'form': forms.CustomUserCreationForm
-            })
-        else:
-            return redirect(reverse_lazy('index'))
-
-    def post(self, request):
-        pass
