@@ -48,6 +48,29 @@ class CustomUpdateView(mixins.UserPassesTestMixin, UpdateView):
             return redirect('index')
 
 
+class DeleteView(mixins.UserPassesTestMixin, DeleteView):
+
+    def test_func(self):
+        return self.request.user.id == self.kwargs['id']
+
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            messages.error(self.request, "You can only mess with your own data!!!")
+            return redirect(reverse_lazy('index'))
+        else:
+            messages.warning(self.request, "Log in to mess with profile data!!!")
+            return redirect(reverse_lazy('login'))
+
+    model = models.User
+    pk_url_kwarg = 'id'
+    template_name = 'registration/delete.html'
+    success_url = reverse_lazy('users')
+
+    def post(self, request, *args, **kwargs):
+        request.user.delete()
+        return redirect(self.success_url)
+
+
 class Custom0000UpdateView(UpdateView):
 
     success_url = reverse_lazy('users')
