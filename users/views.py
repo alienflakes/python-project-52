@@ -17,7 +17,7 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
 
 
-class CustomUpdateView(mixins.UserPassesTestMixin, UpdateView):
+class UserPermissionMixin(mixins.UserPassesTestMixin):
 
     def test_func(self):
         return self.request.user.id == self.kwargs['id']
@@ -29,6 +29,9 @@ class CustomUpdateView(mixins.UserPassesTestMixin, UpdateView):
         else:
             messages.warning(self.request, "Log in to mess with profile data!!!")
             return redirect(reverse_lazy('login'))
+
+
+class CustomUpdateView(UserPermissionMixin, UpdateView):
 
     model = models.User
     pk_url_kwarg = 'id'
@@ -48,18 +51,7 @@ class CustomUpdateView(mixins.UserPassesTestMixin, UpdateView):
             return redirect('index')
 
 
-class DeleteView(mixins.UserPassesTestMixin, DeleteView):
-
-    def test_func(self):
-        return self.request.user.id == self.kwargs['id']
-
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            messages.error(self.request, "You can only mess with your own data!!!")
-            return redirect(reverse_lazy('index'))
-        else:
-            messages.warning(self.request, "Log in to mess with profile data!!!")
-            return redirect(reverse_lazy('login'))
+class DeleteView(UserPermissionMixin, DeleteView):
 
     model = models.User
     pk_url_kwarg = 'id'
