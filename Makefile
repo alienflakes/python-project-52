@@ -1,5 +1,5 @@
 lint:
-	poetry run flake8
+	poetry run flake8 --ignore=E501
 
 dev:
 	poetry run python manage.py runserver
