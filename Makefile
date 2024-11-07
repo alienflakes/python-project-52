@@ -9,4 +9,4 @@ mess:
 	poetry run django-admin compilemessages
 
 test:
-	poetry run python manage.py test
+	poetry run python manage.py test $(args)
