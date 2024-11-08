@@ -44,7 +44,8 @@ class UserUpdateCase(TestCase):
             'username': NEW_USERNAME,
             'first_name': FIRST_NAME,
             'last_name': LAST_NAME,
-            'password': PASSWORD
+            'password1': PASSWORD,
+            'password2': PASSWORD
         }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/users/')
