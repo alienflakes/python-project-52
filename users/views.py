@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext as _
 from django.views.generic import (ListView,
                                   CreateView,
@@ -16,11 +17,12 @@ class UsersView(ListView):
     template_name = 'users.html'
 
 
-class SignUpView(CreateView):
+class SignUpView(SuccessMessageMixin, CreateView):
 
     form_class = forms.CustomUserCreationForm
-    success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
+    success_message = _('User created successfully')
 
 
 class UserPermissionMixin(UserPassesTestMixin):
@@ -39,16 +41,22 @@ class UserPermissionMixin(UserPassesTestMixin):
             return redirect(reverse_lazy('login'))
 
 
-class CustomUpdateView(UserPermissionMixin, UpdateView):
+class CustomUpdateView(UserPermissionMixin,
+                       SuccessMessageMixin,
+                       UpdateView):
 
     model = User
     form_class = forms.CustomUserChangeForm
-    success_url = reverse_lazy('users')
     template_name = 'registration/update.html'
+    success_url = reverse_lazy('users')
+    success_message = _('User updated successfully')
 
 
-class DeleteView(UserPermissionMixin, DeleteView):
+class DeleteView(UserPermissionMixin,
+                 SuccessMessageMixin,
+                 DeleteView):
 
     model = User
     template_name = 'registration/delete.html'
     success_url = reverse_lazy('users')
+    success_message = _('User deleted successfully')
