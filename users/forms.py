@@ -6,14 +6,10 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username']
 
 
-class CustomUserChangeForm(UserCreationForm):
+class CustomUserChangeForm(CustomUserCreationForm):
 
     def clean_username(self):
         return self.cleaned_data.get("username")
-
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'username']

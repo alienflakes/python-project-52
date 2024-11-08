@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.utils.translation import gettext as _
 from django.views.generic import (ListView,
                                   CreateView,
                                   UpdateView,
@@ -8,7 +9,6 @@ from django.views.generic import (ListView,
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
 from . import forms
-from django.utils.translation import gettext as _
 
 
 class UsersView(ListView):
@@ -42,7 +42,6 @@ class UserPermissionMixin(UserPassesTestMixin):
 class CustomUpdateView(UserPermissionMixin, UpdateView):
 
     model = User
-
     form_class = forms.CustomUserChangeForm
     success_url = reverse_lazy('users')
     template_name = 'registration/update.html'
@@ -53,7 +52,3 @@ class DeleteView(UserPermissionMixin, DeleteView):
     model = User
     template_name = 'registration/delete.html'
     success_url = reverse_lazy('users')
-
-    def post(self, request, *args, **kwargs):
-        request.user.delete()
-        return redirect(self.success_url)
