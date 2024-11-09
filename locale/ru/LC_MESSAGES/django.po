@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 00:48+0300\n"
+"POT-Creation-Date: 2024-11-09 22:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,26 +20,49 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/base.html:20
+#: task_manager/views.py:9
+msgid "You are logged in."
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:15
+msgid "You are logged out."
+msgstr "Вы разлогинены"
+
+#: templates/base.html:18
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: templates/base.html:25 templates/users.html:7
+#: templates/base.html:23 templates/users.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/base.html:31 templates/registration/login.html:9
-#: templates/registration/login.html:12
+#: templates/base.html:29 templates/registration/login.html:9
 msgid "Log In"
 msgstr "Вход"
 
-#: templates/base.html:34 templates/registration/signup.html:9
+#: templates/base.html:32 templates/registration/signup.html:9
 msgid "Sign Up"
 msgstr "Регистрация"
 
-#: templates/base.html:39
+#: templates/base.html:37
 msgid "Log Out"
 msgstr "Выход"
+
+#: templates/index.html:8
+msgid "HEY"
+msgstr "ПРИВЕТ"
+
+#: templates/registration/delete.html:13
+msgid "Delete user"
+msgstr "Удаление пользователя"
+
+#: templates/registration/delete.html:14
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: templates/registration/delete.html:17
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: templates/registration/login.html:12
 msgctxt "verb"
@@ -50,6 +73,15 @@ msgstr "Войти"
 msgctxt "verb"
 msgid "Sign Up"
 msgstr "Зарегистрировать"
+
+#: templates/registration/update.html:13
+msgid "Update User"
+msgstr "Изменение пользователя"
+
+#: templates/registration/update.html:16
+msgctxt "verb"
+msgid "Update"
+msgstr "Изменить"
 
 #: templates/users.html:12
 msgid "Username"
@@ -63,13 +95,30 @@ msgstr "Полное имя"
 msgid "Joined at"
 msgstr "Дата создания"
 
-#, fuzzy
-#~| msgid "Sign Up"
-#~ msgctxt "noun"
-#~ msgid "Sign Up"
-#~ msgstr "Регистрация"
+#: templates/users.html:26
+msgid "Update"
+msgstr "Изменить"
 
-#, fuzzy
-#~| msgid "Sign Up"
-#~ msgid "Sign In"
-#~ msgstr "Регистрация"
+#: templates/users.html:27
+msgid "Delete"
+msgstr "Удалить"
+
+#: users/views.py:25
+msgid "User created successfully"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: users/views.py:36
+msgid "You can't edit other user's profile."
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: users/views.py:40
+msgid "You are not authorized! Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: users/views.py:52
+msgid "User updated successfully"
+msgstr "Пользователь успешно изменен"
+
+#: users/views.py:62
+msgid "User deleted successfully"
+msgstr "Пользователь успешно удален"

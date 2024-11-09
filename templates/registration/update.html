@@ -4,13 +4,38 @@
 
 {% block content %}
 
-<form action="{% url 'update' user.id %}" method="post">
-    <div class="col-sm-4">
-        <h1 class="my-4">{% trans 'Update User' %} {{ user.username }}</h1>
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input class="btn btn-primary" type="submit" value="{% trans 'Update' context 'verb' %}">
+<div class="container">
+    <div class="row">
+
+        <div class="col-5">
+            <form action="{% url 'update' user.id %}" method="post">
+                <div>
+                    <h1 class="my-4">{% trans 'Update User' %}</h1>
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input class="btn btn-primary" type="submit" value="{% trans 'Update' context 'verb' %}">
+                </div>
+            </form>            
+        </div>
+
+        <div class="col-7 p-5">
+            ───▐▀▄───────▄▀▌───▄▄▄▄▄▄▄─────────────
+            ───▌▒▒▀▄▄▄▄▄▀▒▒▐▄▀▀▒██▒██▒▀▀▄──────────
+            ──▐▒▒▒▒▀▒▀▒▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄────────
+            ──▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▒▒▒▒▒▒▒▒▀▄──────
+            ▀█▒▒▒█▌▒▒█▒▒▐█▒▒▒▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌─────
+            ▀▌▒▒▒▒▒▒▀▒▀▒▒▒▒▒▒▀▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐───▄▄
+            ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌▄█▒█
+            ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒█▀─
+            ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▀───
+            ─▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐─────
+            ─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌─────
+            ──▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐──────
+            ──▐▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▌──────
+            ────▀▄▄▀▀▀▀▀▄▄▀▀▀▀▀▀▀▄▄▀▀▀▀▀▄▄▀────────
+        </div>
+
     </div>
-</form>
+</div>
 
 {% endblock content %}

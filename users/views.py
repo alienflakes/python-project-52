@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView,
                                   CreateView,
                                   UpdateView,
@@ -33,11 +33,11 @@ class UserPermissionMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
             messages.error(self.request,
-                           _("You can only mess with your own data!!!"))
-            return redirect(reverse_lazy('index'))
+                           _("You can't edit other user's profile."))
+            return redirect(reverse_lazy('users'))
         else:
             messages.warning(self.request,
-                             _("Log in to mess with profile data!!!"))
+                             _("You are not authorized! Please log in."))
             return redirect(reverse_lazy('login'))
 
 

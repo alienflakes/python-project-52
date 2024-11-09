@@ -4,13 +4,39 @@
 
 {% block content %}
 
-<form action="{% url 'delete' user.id %}" method="post">
-    <div class="col-sm-4">
-        <h1 class="my-4">{% trans 'Delete User' %} {{ user.username }}</h1>
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input class="btn btn-danger" type="submit" value="{% trans 'Delete' context 'verb' %}">
+<div class="container">
+    <div class="row">
+
+        <div class="col-6 p-5">
+            <form action="{% url 'delete' user.id %}" method="post">
+                <div class="">
+                    <h1 class="my-4">{% trans 'Delete user' %} {{ user.username }}</h1>
+                    <p>{% trans 'Are you sure you want to delete' %} {{ user.get_full_name }}?</p>
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">
+                </div>
+            </form>
+        </div>
+
+        <div class="col-6 p-5">
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+            ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░
+            ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░
+            ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░
+            ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░
+            ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░
+            ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░
+            ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░
+            ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░
+            ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░
+            ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░
+            ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░
+            ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        </div>
+
     </div>
-</form>
+</div>
 
 {% endblock content %}
