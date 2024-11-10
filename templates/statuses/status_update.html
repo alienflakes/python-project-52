@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="col-5">
+    <form action="{% url 'st_update' status.id %}" method="post">
+        <div>
+            <h1 class="my-4">{% trans 'Update status' %}</h1>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button _('Update') button_class='btn-success' %}
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

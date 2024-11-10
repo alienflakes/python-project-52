@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 22:07+0300\n"
+"POT-Creation-Date: 2024-11-10 22:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,26 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: statuses/models.py:6 templates/statuses/status_list.html:15
+msgid "Name"
+msgstr "Имя"
+
+#: statuses/views.py:19 users/views.py:40
+msgid "You are not authorized! Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: statuses/views.py:37
+msgid "Status created successfully"
+msgstr "Статус успешно зарегистрирован"
+
+#: statuses/views.py:47
+msgid "Status updated successfully"
+msgstr "Статус успешно изменен"
+
+#: statuses/views.py:56
+msgid "Status deleted successfully"
+msgstr "Статус успешно удален"
 
 #: task_manager/views.py:9
 msgid "You are logged in."
@@ -32,21 +52,25 @@ msgstr "Вы разлогинены"
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: templates/base.html:23 templates/users.html:7
+#: templates/base.html:25 templates/users.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/base.html:29 templates/registration/login.html:9
-msgid "Log In"
-msgstr "Вход"
-
-#: templates/base.html:32 templates/registration/signup.html:9
-msgid "Sign Up"
-msgstr "Регистрация"
+#: templates/base.html:30 templates/statuses/status_list.html:7
+msgid "Statuses"
+msgstr "Статусы"
 
 #: templates/base.html:37
 msgid "Log Out"
 msgstr "Выход"
+
+#: templates/base.html:45 templates/registration/login.html:9
+msgid "Log In"
+msgstr "Вход"
+
+#: templates/base.html:48 templates/registration/signup.html:9
+msgid "Sign Up"
+msgstr "Регистрация"
 
 #: templates/index.html:8
 msgid "HEY"
@@ -57,10 +81,12 @@ msgid "Delete user"
 msgstr "Удаление пользователя"
 
 #: templates/registration/delete.html:14
+#: templates/statuses/status_delete.html:11
 msgid "Are you sure you want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
 #: templates/registration/delete.html:17
+#: templates/statuses/status_delete.html:14
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
@@ -75,13 +101,43 @@ msgid "Sign Up"
 msgstr "Зарегистрировать"
 
 #: templates/registration/update.html:13
-msgid "Update User"
+msgid "Update user"
 msgstr "Изменение пользователя"
 
 #: templates/registration/update.html:16
 msgctxt "verb"
 msgid "Update"
 msgstr "Изменить"
+
+#: templates/statuses/status_create.html:13
+#: templates/statuses/status_list.html:9
+msgid "Create status"
+msgstr "Создать статус"
+
+#: templates/statuses/status_create.html:16
+msgid "Create"
+msgstr "Создать"
+
+#: templates/statuses/status_delete.html:10
+msgid "Delete status"
+msgstr "Удаление статуса"
+
+#: templates/statuses/status_list.html:16
+msgid "Created at"
+msgstr "Дата создания"
+
+#: templates/statuses/status_list.html:27
+#: templates/statuses/status_update.html:13 templates/users.html:26
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/statuses/status_list.html:28 templates/users.html:27
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/statuses/status_update.html:10
+msgid "Update status"
+msgstr "Изменение статуса"
 
 #: templates/users.html:12
 msgid "Username"
@@ -95,14 +151,6 @@ msgstr "Полное имя"
 msgid "Joined at"
 msgstr "Дата создания"
 
-#: templates/users.html:26
-msgid "Update"
-msgstr "Изменить"
-
-#: templates/users.html:27
-msgid "Delete"
-msgstr "Удалить"
-
 #: users/views.py:25
 msgid "User created successfully"
 msgstr "Пользователь успешно зарегистрирован"
@@ -110,10 +158,6 @@ msgstr "Пользователь успешно зарегистрирован"
 #: users/views.py:36
 msgid "You can't edit other user's profile."
 msgstr "У вас нет прав для изменения другого пользователя."
-
-#: users/views.py:40
-msgid "You are not authorized! Please log in."
-msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
 #: users/views.py:52
 msgid "User updated successfully"

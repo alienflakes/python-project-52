@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>{% trans 'Statuses' %}</h1>
+
+    <a href="{% url 'st_create' %}" class="btn btn-success mb-3">{% trans 'Create status' %}</a>
+
+    <table class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">{% trans 'Name' %}</th>
+                <th scope="col">{% trans 'Created at' %}</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="table-light align-middle">
+            {% for status in status_list %}
+            <tr>
+                <th scope="row">{{ status.id }}</td>
+                <td>{{ status.name }}</td>
+                <td>{{ status.created_at }}</td>
+                <td class="d-grid">
+                    <a href="{% url 'st_update' status.id %}" class="link-success">{% trans 'Update' %}</a>
+                    <a href="{% url 'st_delete' status.id %}" class="link-dark">{% trans 'Delete' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
