@@ -23,8 +23,8 @@
                 <td>{{ user.get_full_name }}</td>
                 <td>{{ user.date_joined }}</td>
                 <td class="d-grid">
-                    <a href="{% url 'update' user.id %}">{% trans 'Update' %}</a>
-                    <a href="{% url 'delete' user.id %}">{% trans 'Delete' %}</a>
+                    <a href="{% url 'update' user.id %}" class="link-success">{% trans 'Update' %}</a>
+                    <a href="{% url 'delete' user.id %}" class="link-dark">{% trans 'Delete' %}</a>
                 </td>
             </tr>
             {% endfor %}
