@@ -8,37 +8,34 @@ FIRST_NAME = 'Noel'
 LAST_NAME = 'Fielding'
 PASSWORD = 'pinkcrow'
 
-
-def create_user(self):
-    return self.client.post('/users/create/', {
-        'username': USERNAME,
-        'password1': PASSWORD,
-        'password2': PASSWORD
-    })
+USERNAME2 = '2theMoon'
+PASSWORD2 = 'ihatejazz'
 
 
-def set_up(self):
-    create_user(self)
-    return self.client.post('/login/', {
-        'username': USERNAME,
-        'password': PASSWORD
-    })
+class UserCRUDCase(TestCase):
 
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create(username=USERNAME)
+        user.set_password(PASSWORD)
+        user.save()
 
-class UserCreateCase(TestCase):
+    def login(self):
+        self.client.login(username=USERNAME, password=PASSWORD)
+        return User.objects.get(username=USERNAME)
 
     def test_user_create(self):
-        response = create_user(self)
-        self.assertTrue(User.objects.get(username=USERNAME))
+        response = self.client.post('/users/create/', {
+            'username': USERNAME2,
+            'password1': PASSWORD2,
+            'password2': PASSWORD2
+        }, follow=True)
+        self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/login/')
-
-
-class UserUpdateCase(TestCase):
+        self.assertTrue(User.objects.filter(username=USERNAME2).exists())
 
     def test_user_update(self):
-
-        set_up(self)
-        user = User.objects.get(username=USERNAME)
+        user = self.login()
 
         response = self.client.post(f'/users/{user.id}/update/', {
             'username': NEW_USERNAME,
@@ -54,13 +51,8 @@ class UserUpdateCase(TestCase):
         self.assertEqual(user.first_name, FIRST_NAME)
         self.assertEqual(user.last_name, LAST_NAME)
 
-
-class UserDeleteCase(TestCase):
-
     def test_user_delete(self):
-
-        set_up(self)
-        user = User.objects.get(username=USERNAME)
+        user = self.login()
 
         response = self.client.post(f'/users/{user.id}/delete/',
                                     follow=True)
