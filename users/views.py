@@ -13,16 +13,9 @@ from . import forms
 
 
 class UsersView(ListView):
+
     model = User
-    template_name = 'users.html'
-
-
-class SignUpView(SuccessMessageMixin, CreateView):
-
-    form_class = forms.CustomUserCreationForm
-    template_name = 'registration/signup.html'
-    success_url = reverse_lazy('login')
-    success_message = _('User created successfully')
+    template_name = 'users/user_list.html'
 
 
 class UserPermissionMixin(UserPassesTestMixin):
@@ -41,13 +34,21 @@ class UserPermissionMixin(UserPassesTestMixin):
             return redirect(reverse_lazy('login'))
 
 
+class SignUpView(SuccessMessageMixin, CreateView):
+
+    form_class = forms.CustomUserCreationForm
+    template_name = 'users/user_create.html'
+    success_url = reverse_lazy('login')
+    success_message = _('User created successfully')
+
+
 class CustomUpdateView(UserPermissionMixin,
                        SuccessMessageMixin,
                        UpdateView):
 
     model = User
     form_class = forms.CustomUserChangeForm
-    template_name = 'registration/update.html'
+    template_name = 'users/user_update.html'
     success_url = reverse_lazy('users')
     success_message = _('User updated successfully')
 
@@ -57,6 +58,6 @@ class DeleteView(UserPermissionMixin,
                  DeleteView):
 
     model = User
-    template_name = 'registration/delete.html'
+    template_name = 'users/user_delete.html'
     success_url = reverse_lazy('users')
     success_message = _('User deleted successfully')
