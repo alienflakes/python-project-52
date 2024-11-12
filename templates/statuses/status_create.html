@@ -10,7 +10,7 @@
         <div class="col-5">
             <form action="{% url 'st_create' %}" method="post">
                 <div>
-                    <h1 class="my-4">{% trans 'Create status' %}</h1>
+                    <h1 class="my-4">{% trans 'New status' %}</h1>
                     {% csrf_token %}
                     {% bootstrap_form form %}
                     {% bootstrap_button _('Create') button_class='btn-success' %}
