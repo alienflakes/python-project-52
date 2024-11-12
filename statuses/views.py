@@ -1,4 +1,6 @@
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.db.models import ProtectedError
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
@@ -54,3 +56,11 @@ class StatusDeleteView(FlashedLoginRequiredMixin,
     template_name_suffix = '_delete'
     success_url = SUCCESS_URL
     success_message = _('Status deleted successfully')
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        try:
+            obj.delete()
+        except ProtectedError:
+            messages.error(self.request, _("Status can't be deleted as long as it's in use"))
+        return redirect(self.success_url)
