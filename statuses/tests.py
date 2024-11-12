@@ -11,11 +11,15 @@ SUCCESS_URL = '/statuses/'
 
 class StatusCRUDCase(TestCase):
 
-    def setUp(self):
-        self.id = Status.objects.create(name=NAME2).id
+    @classmethod
+    def setUpTestData(cls):
+        Status.objects.create(name=NAME2)
         user = User.objects.create(username='testuser')
         user.set_password('12345')
         user.save()
+
+    def setUp(self):
+        self.id = Status.objects.get(name=NAME2).id
         return self.client.login(username='testuser', password='12345')
 
     def test_status_create(self):
