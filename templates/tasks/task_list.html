@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>{% trans 'Tasks' %}</h1>
+
+    <a href="{% url 'task_create' %}" class="btn btn-success mb-3">{% trans 'New task' %}</a>
+
+    <table class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">{% trans 'Name' %}</th>
+                <th scope="col">{% trans 'Status' %}</th>
+                <th scope="col">{% trans 'Creator' %}</th>
+                <th scope="col">{% trans 'Doer' %}</th>
+                <th scope="col">{% trans 'Created at' %}</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="table-light align-middle">
+            {% for task in task_list %}
+            <tr>
+                <th scope="row">{{ task.id }}</td>
+                <td>
+                    <a href="{% url 'task_view' task.id %}" class="btn btn-dark">{{ task.name }}</a>
+                </td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.creator }}</td>
+                <td>{{ task.doer }}</td>
+                <td>{{ task.created_at }}</td>
+                <td class="d-grid">
+                    <a href="{% url 'task_update' task.id %}" class="link-success">{% trans 'Update' %}</a>
+                    <a href="{% url 'task_delete' task.id %}" class="link-dark">{% trans 'Delete' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
