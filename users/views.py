@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.db.models import ProtectedError
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
@@ -61,3 +62,11 @@ class DeleteView(UserPermissionMixin,
     template_name = 'users/user_delete.html'
     success_url = reverse_lazy('users')
     success_message = _('User deleted successfully')
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        try:
+            obj.delete()
+        except ProtectedError:
+            messages.error(self.request, _("User can't be deleted as long as they're involved in tasks"))
+        return redirect(self.success_url)
