@@ -10,7 +10,7 @@
     {% bootstrap_javascript %}
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
     {% block nav %}
     <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -28,6 +28,9 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'st_list' %}">{% trans 'Statuses' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Labels' %}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Tasks' %}</a>

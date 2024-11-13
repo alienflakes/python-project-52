@@ -40,7 +40,7 @@ class TaskCreateView(FlashedLoginRequiredMixin,
                      SuccessMessageMixin, CreateView):
 
     model = Task
-    fields = ['name', 'description', 'status', 'doer']
+    fields = ['name', 'description', 'status', 'doer', 'labels']
     template_name_suffix = '_create'
     success_url = SUCCESS_URL
     success_message = _('Task created successfully')
@@ -54,7 +54,7 @@ class TaskUpdateView(FlashedLoginRequiredMixin,
                      SuccessMessageMixin, UpdateView):
 
     model = Task
-    fields = ['name', 'description', 'status', 'doer']
+    fields = ['name', 'description', 'status', 'doer', 'labels']
     template_name_suffix = '_update'
     success_url = SUCCESS_URL
     success_message = _('Task updated successfully')
