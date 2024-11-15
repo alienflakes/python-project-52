@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 21:16+0300\n"
+"POT-Creation-Date: 2024-11-16 01:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: labels/models.py:7 statuses/models.py:6 tasks/models.py:10
 #: templates/labels/label_list.html:15 templates/statuses/status_list.html:15
-#: templates/tasks/task_list.html:15
+#: templates/tasks/task_list.html:25
 msgid "Name"
 msgstr "Имя"
 
-#: labels/views.py:20 statuses/views.py:21 tasks/views.py:21 users/views.py:34
+#: labels/views.py:20 statuses/views.py:21 tasks/views.py:22 users/views.py:34
 msgid "You are not authorized! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
@@ -70,21 +70,29 @@ msgstr "Вы залогинены"
 msgid "You are logged out."
 msgstr "Вы разлогинены"
 
+#: tasks/filters.py:19
+msgid "Label"
+msgstr "Метка"
+
+#: tasks/filters.py:29
+msgid "My tasks only"
+msgstr "Только свои задачи"
+
 #: tasks/models.py:12
 msgid "Description"
 msgstr "Описание"
 
-#: tasks/models.py:14 templates/tasks/task_list.html:16
+#: tasks/models.py:14 templates/tasks/task_list.html:26
 #: templates/tasks/task_view.html:30
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/models.py:17 templates/tasks/task_list.html:17
+#: tasks/models.py:17 templates/tasks/task_list.html:27
 #: templates/tasks/task_view.html:22
 msgid "Creator"
 msgstr "Автор"
 
-#: tasks/models.py:21 templates/tasks/task_list.html:18
+#: tasks/models.py:21 templates/tasks/task_list.html:28
 #: templates/tasks/task_view.html:26
 msgid "Doer"
 msgstr "Исполнитель"
@@ -94,19 +102,19 @@ msgstr "Исполнитель"
 msgid "Labels"
 msgstr "Метки"
 
-#: tasks/views.py:46
+#: tasks/views.py:49
 msgid "Task created successfully"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:60
+#: tasks/views.py:63
 msgid "Task updated successfully"
 msgstr "Задача успешно изменена"
 
-#: tasks/views.py:71
+#: tasks/views.py:74
 msgid "Task can be deleted only by it's creator"
 msgstr "Задачу может удалить только ее автор"
 
-#: tasks/views.py:77
+#: tasks/views.py:80
 msgid "Task deleted successfully"
 msgstr "Задача успешно удалена"
 
@@ -122,7 +130,7 @@ msgstr "Пользователи"
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/base.html:36 templates/tasks/task_list.html:7
+#: templates/base.html:36 templates/tasks/task_list.html:9
 msgid "Tasks"
 msgstr "Задачи"
 
@@ -168,20 +176,20 @@ msgid "Yes, delete"
 msgstr "Да, удалить"
 
 #: templates/labels/label_list.html:16 templates/statuses/status_list.html:16
-#: templates/tasks/task_list.html:19 templates/tasks/task_view.html:34
+#: templates/tasks/task_list.html:29 templates/tasks/task_view.html:34
 msgid "Created at"
 msgstr "Дата создания"
 
 #: templates/labels/label_list.html:27 templates/labels/label_update.html:13
 #: templates/statuses/status_list.html:27
-#: templates/statuses/status_update.html:13 templates/tasks/task_list.html:35
+#: templates/statuses/status_update.html:13 templates/tasks/task_list.html:45
 #: templates/tasks/task_update.html:13 templates/tasks/task_view.html:50
 #: templates/users/user_list.html:26
 msgid "Update"
 msgstr "Изменить"
 
 #: templates/labels/label_list.html:28 templates/statuses/status_list.html:28
-#: templates/tasks/task_list.html:36 templates/tasks/task_view.html:51
+#: templates/tasks/task_list.html:46 templates/tasks/task_view.html:51
 #: templates/users/user_list.html:27
 msgid "Delete"
 msgstr "Удалить"
@@ -208,13 +216,21 @@ msgstr "Удаление статуса"
 msgid "Update status"
 msgstr "Изменение статуса"
 
-#: templates/tasks/task_create.html:13 templates/tasks/task_list.html:9
+#: templates/tasks/task_create.html:13 templates/tasks/task_list.html:11
 msgid "New task"
 msgstr "Создать задачу"
 
 #: templates/tasks/task_delete.html:10
 msgid "Delete task"
 msgstr "Удаление задачи"
+
+#: templates/tasks/task_list.html:16
+msgid "Apply"
+msgstr "Показать"
+
+#: templates/tasks/task_list.html:17
+msgid "Reset"
+msgstr "Сбросить"
 
 #: templates/tasks/task_update.html:10
 msgid "Update task"

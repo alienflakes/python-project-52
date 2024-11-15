@@ -1,6 +1,6 @@
 import django_filters
 from django import forms
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from .models import Task
 from django.contrib.auth.models import User
 from statuses.models import Status
