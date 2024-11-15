@@ -2,14 +2,15 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import (ListView,
-                                  DetailView,
+from django.views.generic import (DetailView,
                                   CreateView,
                                   UpdateView,
                                   DeleteView)
 from .models import Task
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .filters import TaskFilter
+from django_filters.views import FilterView
 
 
 SUCCESS_URL = reverse_lazy('task_list')
@@ -23,10 +24,12 @@ class FlashedLoginRequiredMixin(LoginRequiredMixin):
 
 
 class TaskListView(FlashedLoginRequiredMixin,
-                   ListView):
+                   FilterView):
 
     model = Task
+    context_object_name = 'tasks'
     template_name_suffix = '_list'
+    filterset_class = TaskFilter
 
 
 class TaskView(FlashedLoginRequiredMixin,

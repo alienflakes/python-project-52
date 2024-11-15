@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% load i18n %}
+
 
 {% block content %}
 
 <div class="container-lg mt-3">
     <h1>{% trans 'Tasks' %}</h1>
 
-    <a href="{% url 'task_create' %}" class="btn btn-success mb-3">{% trans 'New task' %}</a>
+    <a href="{% url 'task_create' %}" class="btn btn-success">{% trans 'New task' %}</a>
+
+    <div class="card p-3 my-3 bg-light">
+        <form method="get">
+            {% bootstrap_form filter.form %}
+            {% bootstrap_button _('Apply') button_class='btn-success' %}
+            <a href="{% url 'task_list' %}" class="btn btn-danger">{% trans 'Reset' %}</a>
+        </form>
+    </div>
 
     <table class="table table-striped table-hover table-dark">
         <thead>
@@ -21,7 +31,7 @@
             </tr>
         </thead>
         <tbody class="table-light align-middle">
-            {% for task in task_list %}
+            {% for task in tasks %}
             <tr>
                 <th scope="row">{{ task.id }}</td>
                 <td>
