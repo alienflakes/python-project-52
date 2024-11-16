@@ -9,17 +9,10 @@ from django.views.generic import (ListView,
                                   UpdateView,
                                   DeleteView)
 from .models import Status
-from django.contrib.auth.mixins import LoginRequiredMixin
+from tasks.views import FlashedLoginRequiredMixin
 
 
 SUCCESS_URL = reverse_lazy('st_list')
-
-
-class FlashedLoginRequiredMixin(LoginRequiredMixin):
-
-    def handle_no_permission(self):
-        messages.error(self.request, _("You are not authorized! Please log in."))
-        return super().handle_no_permission()
 
 
 class StatusListView(FlashedLoginRequiredMixin,
