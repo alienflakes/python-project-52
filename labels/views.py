@@ -52,7 +52,8 @@ class LabelDeleteView(FlashedLoginRequiredMixin,
     def post(self, request, *args, **kwargs):
         label = self.get_object()
         if label.task_set.all():
-            messages.error(self.request, _("Label can't be deleted as long as it's in use"))
+            messages.error(self.request,
+                           _("Label can't be deleted as long as it's in use"))
         else:
             label.delete()
             messages.success(self.request, self.success_message)

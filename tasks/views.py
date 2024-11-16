@@ -19,7 +19,8 @@ SUCCESS_URL = reverse_lazy('task_list')
 class FlashedLoginRequiredMixin(LoginRequiredMixin):
 
     def handle_no_permission(self):
-        messages.error(self.request, _("You are not authorized! Please log in."))
+        messages.error(self.request,
+                       _("You are not authorized! Please log in."))
         return super().handle_no_permission()
 
 
@@ -71,7 +72,8 @@ class TaskDeleteView(FlashedLoginRequiredMixin,
         return self.request.user == self.get_object().creator
 
     def handle_no_permission(self):
-        messages.error(self.request, _("Task can be deleted only by it's creator"))
+        messages.error(self.request,
+                       _("Task can be deleted only by it's creator"))
         return redirect(SUCCESS_URL)
 
     model = Task
