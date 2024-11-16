@@ -1,5 +1,5 @@
 lint:
-	poetry run flake8 --exclude .venv --ignore=E501
+	poetry run flake8 --exclude .venv,*/migrations
 
 run:
 	poetry run python manage.py $(a)
