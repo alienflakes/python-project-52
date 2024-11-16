@@ -67,6 +67,7 @@ class DeleteView(UserPermissionMixin,
         obj = self.get_object()
         try:
             obj.delete()
+            messages.success(self.request, self.success_message)
         except ProtectedError:
             messages.error(self.request, _("User can't be deleted as long as they're involved in tasks"))
         return redirect(self.success_url)
