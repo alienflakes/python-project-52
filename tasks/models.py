@@ -16,9 +16,9 @@ class Task(models.Model):
                                 related_name='creator',
                                 verbose_name=_('Creator'))
     executor = models.ForeignKey(User, on_delete=models.PROTECT,
-                             null=True, blank=True,
-                             related_name='executor',
-                             verbose_name=_('Executor'))
+                                 null=True, blank=True,
+                                 related_name='executor',
+                                 verbose_name=_('Executor'))
     labels = models.ManyToManyField(Label, blank=True,
                                     verbose_name=_('Labels'))
     created_at = models.DateTimeField(auto_now_add=True)
