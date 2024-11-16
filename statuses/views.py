@@ -54,6 +54,7 @@ class StatusDeleteView(FlashedLoginRequiredMixin,
         obj = self.get_object()
         try:
             obj.delete()
+            messages.success(self.request, self.success_message)
         except ProtectedError:
             messages.error(self.request, _("Status can't be deleted as long as it's in use"))
         return redirect(self.success_url)

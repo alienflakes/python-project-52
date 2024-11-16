@@ -55,4 +55,5 @@ class LabelDeleteView(FlashedLoginRequiredMixin,
             messages.error(self.request, _("Label can't be deleted as long as it's in use"))
         else:
             label.delete()
+            messages.success(self.request, self.success_message)
         return redirect(self.success_url)
