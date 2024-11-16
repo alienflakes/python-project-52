@@ -15,10 +15,10 @@ class Task(models.Model):
     creator = models.ForeignKey(User, on_delete=models.PROTECT,
                                 related_name='creator',
                                 verbose_name=_('Creator'))
-    doer = models.ForeignKey(User, on_delete=models.PROTECT,
+    executor = models.ForeignKey(User, on_delete=models.PROTECT,
                              null=True, blank=True,
-                             related_name='doer',
-                             verbose_name=_('Doer'))
+                             related_name='executor',
+                             verbose_name=_('Executor'))
     labels = models.ManyToManyField(Label, blank=True,
                                     verbose_name=_('Labels'))
     created_at = models.DateTimeField(auto_now_add=True)

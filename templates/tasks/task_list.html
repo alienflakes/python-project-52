@@ -25,7 +25,7 @@
                 <th scope="col">{% trans 'Name' %}</th>
                 <th scope="col">{% trans 'Status' %}</th>
                 <th scope="col">{% trans 'Creator' %}</th>
-                <th scope="col">{% trans 'Doer' %}</th>
+                <th scope="col">{% trans 'Executor' %}</th>
                 <th scope="col">{% trans 'Created at' %}</th>
                 <th scope="col"></th>
             </tr>
@@ -39,7 +39,7 @@
                 </td>
                 <td>{{ task.status }}</td>
                 <td>{{ task.creator }}</td>
-                <td>{{ task.doer }}</td>
+                <td>{{ task.executor }}</td>
                 <td>{{ task.created_at }}</td>
                 <td class="d-grid">
                     <a href="{% url 'task_update' task.id %}" class="link-success">{% trans 'Update' %}</a>

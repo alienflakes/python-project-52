@@ -24,4 +24,4 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'doer', 'labels', 'own_task']
+        fields = ['status', 'executor', 'labels', 'own_task']

@@ -94,7 +94,7 @@ msgstr "Автор"
 
 #: tasks/models.py:21 templates/tasks/task_list.html:28
 #: templates/tasks/task_view.html:26
-msgid "Doer"
+msgid "Executor"
 msgstr "Исполнитель"
 
 #: tasks/models.py:23 templates/base.html:33 templates/labels/label_list.html:7
