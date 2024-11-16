@@ -9,12 +9,6 @@ from labels.models import Label
 
 class TaskFilter(django_filters.FilterSet):
 
-    status = django_filters.ModelChoiceFilter(
-        queryset=Status.objects.all())
-
-    doer = django_filters.ModelChoiceFilter(
-        queryset=User.objects.all())
-
     labels = django_filters.ModelChoiceFilter(
         label=_('Label'),
         queryset=Label.objects.all())
