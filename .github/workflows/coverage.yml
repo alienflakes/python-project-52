@@ -11,8 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: brokeyourbike/codeclimate-action@v0.1
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v9.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        token: ${{ secrets.CC_TEST_REPORTER_ID }}
-        files: .coverage
+        coverageCommand: poetry run coverage run --source='.' manage.py test
