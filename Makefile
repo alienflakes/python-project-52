@@ -1,6 +1,9 @@
 lint:
 	poetry run flake8 --exclude .venv,*/migrations
 
+build:
+	./build.sh
+
 run:
 	poetry run python manage.py $(a)
 
@@ -14,10 +17,10 @@ mess:
 test:
 	poetry run python manage.py test $(a)
 
-.PHONY: coverage
-coverage:
+.PHONY: coverage-run
+coverage-run:
 	poetry run coverage run manage.py test
 
-.PHONY: coverage
-coverage-xml: coverage
+.PHONY: coverage-run
+coverage-xml: coverage-run
 	coverage xml
