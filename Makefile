@@ -14,10 +14,10 @@ mess:
 test:
 	poetry run python manage.py test $(a)
 
+.PHONY: coverage
 coverage:
 	poetry run coverage run manage.py test
 
+.PHONY: coverage
 coverage-xml: coverage
 	coverage xml
-
-.PHONY: coverage
