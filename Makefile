@@ -22,9 +22,5 @@ coverage-run:
 	poetry run coverage run manage.py test
 
 .PHONY: coverage-xml
-coverage-xml:
+coverage-xml: coverage-run
 	coverage xml
-
-.PHONY: coverage-full
-coverage-full:
-	coverage-run coverage-xml
