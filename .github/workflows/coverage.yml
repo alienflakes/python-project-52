@@ -34,5 +34,5 @@ jobs:
             SECRET_KEY: 12345678
         with:
           coverageCommand: poetry run coverage run manage.py test
-          # coverageLocations: |
-          #   ${{github.workspace}}/coverage.xml:coverage.py
+          coverageLocations: |
+            ${{github.workspace}}/coverage.xml:coverage.py
