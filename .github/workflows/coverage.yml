@@ -21,7 +21,9 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
       - name: Build project
-        run: make build
+        run: poetry install --no-interaction --no-root
+             python manage.py collectstatic --no-input
+             python manage.py migrate
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5
         env:
