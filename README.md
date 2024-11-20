@@ -9,12 +9,14 @@ Task Manager helps you keep track of - you guessed it - tasks!
 <br>
 ..And also experience that strong "study project" vibe, of course.
 
+<br>
+
 > [Fourth project](https://ru.hexlet.io/programs/python/projects/52) of [@Hexlet](https://ru.hexlet.io/) Python Course
 
 ### [✨ Check out Task Manager live! ✨](https://python-project-52-731n.onrender.com)
 
-Built on Python using Django and Bootstrap with the help of various libs.  
-Uses SQLite3 (dev) and PostgreSQL (prod).
+Built on **Python** using **Django** and Bootstrap with the help of various libs.  
+Uses **SQLite** (dev) and **PostgreSQL** (prod).
 
 > All kinds of badges:
 [![Actions Status](https://github.com/alienflakes/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/alienflakes/python-project-52/actions)
