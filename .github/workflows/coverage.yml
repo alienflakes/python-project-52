@@ -30,9 +30,9 @@ jobs:
         uses: paambaati/codeclimate-action@v5
         env:
             CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-            DATABASE_ENGINE: 'SQLite'
-            SECRET_KEY: 12345678
+            DB_ENGINE: 'SQLite'
+            SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
-          coverageCommand: poetry run coverage run manage.py test
+          coverageCommand: make coverage-xml
           coverageLocations: |
             ${{github.workspace}}/coverage.xml:coverage.py

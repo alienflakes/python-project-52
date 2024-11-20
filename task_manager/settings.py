@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -69,13 +69,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL',
-                          default=os.path.join('sqlite:///', BASE_DIR, 'db.sqlite3')),
+DB_ENGINE = os.getenv('DB_ENGINE', default='SQLite')
+
+DB_OPTIONS = {
+    'postgreSQL': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
-    )
+    ),
+    'SQLite': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+}
+
+DATABASES = {
+    'default': DB_OPTIONS.get(DB_ENGINE, 'SQLite')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
