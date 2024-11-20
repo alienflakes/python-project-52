@@ -20,10 +20,12 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - name: Build project
+      - name: Install project
         run: poetry install --no-interaction --no-root
-             python manage.py collectstatic --no-input
-             python manage.py migrate
+      - name: Static
+        run: poetry run python manage.py collectstatic --no-input
+      - name: Migrate
+        run: poetry run python manage.py migrate
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5
         env:
