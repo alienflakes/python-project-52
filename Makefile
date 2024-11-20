@@ -13,3 +13,10 @@ mess:
 
 test:
 	poetry run python manage.py test $(a)
+
+.PHONY: coverage
+coverage:
+	poetry run coverage run manage.py test
+
+coverage-xml: coverage
+	coverage xml
