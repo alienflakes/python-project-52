@@ -24,7 +24,8 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Build project
         run: poetry build
-             poetry run python manage.py migrate
+      - name: Migrate
+        run: poetry run python manage.py migrate
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5
         env:
