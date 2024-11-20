@@ -69,11 +69,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
-DATABASE_URL = 'sqlite:////home/alienflakes/codish/python-project-52/db.sqlite3'
-
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:////home/alienflakes/codish/python-project-52/db.sqlite3',
+        default=os.getenv('DATABASE_URL',
+                          default=os.path.join('sqlite:///', BASE_DIR, 'db.sqlite3')),
         conn_max_age=600,
         conn_health_checks=True,
     )
