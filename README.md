@@ -12,7 +12,7 @@ I mean, it's all just Django ORM!
 <br>
 ..And also experience that strong "study project" vibe, of course.
 
-<br>
+<br><br>
 
 > [Fourth project](https://ru.hexlet.io/programs/python/projects/52) of [@Hexlet](https://ru.hexlet.io/)'s Python Course
 
