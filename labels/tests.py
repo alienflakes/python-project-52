@@ -1,46 +1,41 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from users.tests import login_user1
 from .models import Label
 
 
-NAME1 = 'label1'
-NAME2 = 'label2'
-NAME3 = 'label3'
 SUCCESS_URL = '/labels/'
 
 
 class LabelCRUDCase(TestCase):
 
-    @classmethod
-    def setUpTestData(cls):
-        Label.objects.create(name=NAME2)
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
+    fixtures = ['label.json',
+                'users/fixtures/user1.json']
 
     def setUp(self):
-        self.label_id = Label.objects.get(name=NAME2).id
-        return self.client.login(username='testuser', password='12345')
+        return login_user1(self)
 
-    def test_Label_create(self):
+    def test_label_create(self):
+        name = 'backend'
         response = self.client.post('/labels/create/',
-                                    {'name': NAME1}, follow=True)
+                                    {'name': name},
+                                    follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(Label.objects.get(name=NAME1))
+        self.assertTrue(Label.objects.get(name=name))
         self.assertRedirects(response, SUCCESS_URL)
 
     def test_label_update(self):
-        response = self.client.post(f'/labels/{self.label_id}/update/',
-                                    {'name': NAME3},
+        new_name = 'UI'
+        response = self.client.post('/labels/1/update/',
+                                    {'name': new_name},
                                     follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, SUCCESS_URL)
-        label = Label.objects.get(id=self.label_id)
-        self.assertEqual(label.name, NAME3)
+        label = Label.objects.get(id=1)
+        self.assertEqual(label.name, new_name)
 
     def test_label_delete(self):
-        response = self.client.post(f'/labels/{self.label_id}/delete/',
+        response = self.client.post('/labels/1/delete/',
                                     follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, SUCCESS_URL)
-        self.assertFalse(Label.objects.filter(id=self.label_id).exists())
+        self.assertFalse(Label.objects.filter(id=1).exists())
