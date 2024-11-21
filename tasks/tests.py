@@ -1,47 +1,48 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from users.tests import login_user1
 from .models import Task
 from statuses.models import Status
 
 
-NAME1 = 'task1'
-NAME2 = 'task2'
-NAME3 = 'task3'
-STATUS = 'wow'
-
-
 class TaskCRUDCase(TestCase):
+    # should probably add testing labels and executors later
+
+    fixtures = ['users/fixtures/user1.json']
 
     @classmethod
     def setUpTestData(cls):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        status = Status.objects.create(name=STATUS)
-        Task.objects.create(name=NAME2, creator=user, status=status)
+        status = Status.objects.create(id=1,
+                                       name='wow')
+        Task.objects.create(id=1,
+                            name='do stuff',
+                            creator=User.objects.get(id=1),
+                            status=status)
 
     def setUp(self):
-        self.task_id = Task.objects.get(name=NAME2).id
-        return self.client.login(username='testuser', password='12345')
+        return login_user1(self)
 
     def test_task_create(self):
+        name = 'take a break'
         response = self.client.post('/tasks/create/',
-                                    {'name': NAME1,
-                                     'status': [1]}, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(Task.objects.filter(name=NAME1).exists())
-
-    def test_task_update(self):
-        response = self.client.post(f'/tasks/{self.task_id}/update/',
-                                    {'name': NAME3,
+                                    {'name': name,
                                      'status': [1]},
                                     follow=True)
         self.assertEqual(response.status_code, 200)
-        task = Task.objects.get(id=self.task_id)
-        self.assertEqual(task.name, NAME3)
+        self.assertTrue(Task.objects.filter(name=name).exists())
 
-    def test_task_delete(self):
-        response = self.client.post(f'/tasks/{self.task_id}/delete/',
+    def test_task_update(self):
+        new_name = 'get help'
+        response = self.client.post('/tasks/1/update/',
+                                    {'name': new_name,
+                                     'status': [1]},
                                     follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(Task.objects.filter(id=self.task_id).exists())
+        task = Task.objects.get(id=1)
+        self.assertEqual(task.name, new_name)
+
+    def test_task_delete(self):
+        response = self.client.post('/tasks/1/delete/',
+                                    follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Task.objects.filter(id=1).exists())
