@@ -1,46 +1,40 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from users.tests import login_user1
 from .models import Status
 
 
-NAME1 = 'status1'
-NAME2 = 'status2'
-NAME3 = 'status3'
 SUCCESS_URL = '/statuses/'
 
 
 class StatusCRUDCase(TestCase):
 
-    @classmethod
-    def setUpTestData(cls):
-        Status.objects.create(name=NAME2)
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
+    fixtures = ['status.json',
+                'users/fixtures/user1.json']
 
     def setUp(self):
-        self.id = Status.objects.get(name=NAME2).id
-        return self.client.login(username='testuser', password='12345')
+        return login_user1(self)
 
     def test_status_create(self):
+        name = 'new'
         response = self.client.post('/statuses/create/',
-                                    {'name': NAME1}, follow=True)
+                                    {'name': name}, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(Status.objects.get(name=NAME1))
+        self.assertTrue(Status.objects.get(name=name))
         self.assertRedirects(response, SUCCESS_URL)
 
     def test_status_update(self):
-        response = self.client.post(f'/statuses/{self.id}/update/',
-                                    {'name': NAME3},
+        new_name = 'finished'
+        response = self.client.post('/statuses/1/update/',
+                                    {'name': new_name},
                                     follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, SUCCESS_URL)
-        status = Status.objects.get(id=self.id)
-        self.assertEqual(status.name, NAME3)
+        status = Status.objects.get(id=1)
+        self.assertEqual(status.name, new_name)
 
     def test_status_delete(self):
-        response = self.client.post(f'/statuses/{self.id}/delete/',
+        response = self.client.post('/statuses/1/delete/',
                                     follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, SUCCESS_URL)
-        self.assertFalse(Status.objects.filter(id=self.id).exists())
+        self.assertFalse(Status.objects.filter(id=1).exists())
