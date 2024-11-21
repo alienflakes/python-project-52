@@ -5,18 +5,17 @@ Task Manager helps you keep track of - you guessed it - tasks!
 > This study project focuses on syncing databases with Web and setting up custom models to work with each other nicely.  
 I mean, it's all just Django ORM!
 
+<ul>
 <li> Use authorization for picky access
-<li> Create tasks and assign them to members
-<li> Add statuses and labels for easier distinction
-<li> Filter tasks by their content
-<br>
-..And also experience that strong "study project" vibe, of course.
-
-<br><br>
-
-> [Fourth project](https://ru.hexlet.io/programs/python/projects/52) of [@Hexlet](https://ru.hexlet.io/)'s Python Course
+    <li> Create tasks and assign them to members
+    <li> Add statuses and labels for easier distinction
+    <li> Filter tasks by their content
+</ul>
+  ..And also experience that strong "study project" vibe, of course.  
 
 ### [✨ Check out Task Manager live! ✨](https://python-project-52-731n.onrender.com)
+
+> [Fourth project](https://ru.hexlet.io/programs/python/projects/52) of [@Hexlet](https://ru.hexlet.io/)'s Python Course
 
 Built on **Python** using **Django** and Bootstrap with the help of various libs.  
 Uses **SQLite** (dev) and **PostgreSQL** (prod).  
